@@ -1,3 +1,4 @@
+using System;
 using API.Errors;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -26,7 +27,9 @@ namespace API.Controllers
     [HttpGet("servererror")]
     public ActionResult GetServerError()
     {
-      var thing = _context.Products.Find(42);
+      Console.WriteLine("Hit");
+      var zero = 0;
+      var thing = 42 / zero;
       var thingToReturn = thing.ToString();
       return Ok();
     }
