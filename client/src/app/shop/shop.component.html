@@ -1,17 +1,18 @@
-<div class="container">
+<div class="container mt-3">
   <div class="row">
-    <section class="col-12 col-md-3 ">
+    <section class="col-12 col-md-3" style="margin-top: 2.5rem;">
       <app-filters (onSelectBrand)="selectBrand($event)" (onSelectType)="selectType($event)" (onSelectSortBy)="selectSortBy($event)"></app-filters>
     </section>
     <section class="col-12 col-md-9">
       <div class="d-flex justify-content-between align-items-center pb-2">
         <app-paging-header
+          *ngIf="products"
           [totalCount]="totalCount"
           [pageSize]="shopParams.pageSize"
           [pageNumber]="shopParams.pageNumber"
         >
         </app-paging-header>
-        <div class="d-flex align-items-center form-inline mt-2">
+        <div class="d-flex align-items-center form-inline mt-2" *ngIf="products">
           <input 
             (keyup.enter)="onSearch()"
             type="text" 

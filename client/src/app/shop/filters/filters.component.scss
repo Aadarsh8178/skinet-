@@ -1,0 +1,9 @@
+.list-group {
+  & li {
+    color: black !important;
+  }
+  & .active {
+    background: #593196 !important;
+    color: white !important;
+  }
+}

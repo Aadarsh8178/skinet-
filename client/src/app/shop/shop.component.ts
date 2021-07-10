@@ -9,9 +9,9 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: true })
+  @ViewChild('search', { static: false })
   searchTerm!: ElementRef;
-  products: IProduct[] = [];
+  products: IProduct[] | undefined;
   shopParams = new ShopParams();
   totalCount=0;
   constructor(private shopService: ShopService) { }
