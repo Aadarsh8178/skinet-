@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BusyService } from '../core/services/busy.service';
 import { IProduct } from '../shared/models/product';
 import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from './shop.service';
@@ -14,12 +15,13 @@ export class ShopComponent implements OnInit {
   products: IProduct[] | undefined;
   shopParams = new ShopParams();
   totalCount=0;
-  constructor(private shopService: ShopService) { }
+  constructor(private shopService: ShopService,private busyService:BusyService) { }
 
   ngOnInit(): void {
     this.getProducts();
   }
   getProducts(){
+    this.busyService.busy();
     this.shopService.getProducts(this.shopParams).subscribe( res => {
       if(res){
         this.products = res.data;
@@ -27,6 +29,7 @@ export class ShopComponent implements OnInit {
         this.shopParams.pageSize = res.pageSize;
         this.totalCount = res.count;
       }
+      this.busyService.idle();
     }, err => console.log(err))
   }
   selectBrand(brand: number){
